@@ -14,7 +14,7 @@ class Login(View):
     def get(self, request):
         if request.session.get(SESSION_USER_ID_FIELD_NAME):
             del request.session[SESSION_USER_ID_FIELD_NAME]
-        return render(request, 'authentification/login.html')
+        return render(request, 'authentication/login.html')
 
     def post(self, request):
         username = request.POST.get('username')
@@ -23,9 +23,9 @@ class Login(View):
         parent = models.Parent.authenticate(username, password)
         if parent:
             parent.login(request)
-            return redirect('authentification:profile')
+            return redirect('authentication:profile')
         else:
-            return render(request, 'authentification/login.html', context={
+            return render(request, 'authentication/login.html', context={
                 "error": "Invalid username / password."
             })
 

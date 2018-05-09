@@ -26,5 +26,5 @@ def logged_in_only(func):
     def wrap(self, request, *args, **kwargs):
         if request.session.get(SESSION_USER_ID_FIELD_NAME):
             return func(self, request, *args, **kwargs)
-        return redirect('authentification:login')
+        return redirect('authentication:login')
     return wrap
