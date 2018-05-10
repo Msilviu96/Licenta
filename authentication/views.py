@@ -1,13 +1,9 @@
 from django.shortcuts import render, redirect
 from django.views.generic import View
-from .authentification import logged_in_only
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse
 
 from database import models
 from licenta.settings import SESSION_USER_ID_FIELD_NAME
-
-
-# Create your views here.
 
 
 class Login(View):
@@ -73,7 +69,19 @@ class Register(View):
 
 
 class Profile(View):
+    def get(self, request):
+        if request.session.get(SESSION_USER_ID_FIELD_NAME):
+            return self.profile(request)
+        else:
+            return self.home(request)
 
-    @logged_in_only
-    def get(self, reguest):
-        return HttpResponse('<h1> Profile </h1>')
+    def post(self, request):
+        pass
+
+    @classmethod
+    def profile(cls, request):
+        return render(request, "authentication/base.html")
+
+    @classmethod
+    def home(cls, request):
+        return render(request, "authentication/home.html")

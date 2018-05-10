@@ -1,0 +1,17 @@
+body {
+    margin:5;
+    padding:5;
+    height:100%;
+}
+
+div.navigation_bar {
+    height: 10%;
+    width: 100%;
+    background-color: coral;
+}
+
+div.content {
+    height: 90%;
+    width: 100%;
+    background-color: blue;
+}
