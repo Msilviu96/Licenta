@@ -40,7 +40,9 @@ INSTALLED_APPS = [
     'authentication',
     'database',
     'map',
-    'leaflet'
+    'child',
+    'leaflet',
+
 ]
 
 MIDDLEWARE = [
@@ -127,3 +129,18 @@ PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
 STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
 
 SESSION_USER_ID_FIELD_NAME = 'parent_id'
+
+LEAFLET_CONFIG = {
+    'DEFAULT_CENTER': (47.155, 27.60),
+    'DEFAULT_ZOOM': 14,
+    'MIN_ZOOM': 3,
+    'MAX_ZOOM': 20,
+    'SCALE': 'both',
+    'PLUGINS': {
+        'name-of-plugin': {
+            'css': ['relative/path/to/stylesheet.css', '/root/path/to/stylesheet.css'],
+            'js': 'http://absolute-url.example.com/path/to/script.js',
+            'auto-include': True,
+        },
+    },
+}

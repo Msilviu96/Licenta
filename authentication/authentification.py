@@ -8,6 +8,7 @@ from django.http import HttpResponseRedirect
 
 from database import models
 
+
 class Authenticator(object):
 
     def __init__(self):
@@ -27,4 +28,5 @@ def logged_in_only(func):
         if request.session.get(SESSION_USER_ID_FIELD_NAME):
             return func(self, request, *args, **kwargs)
         return redirect('authentication:login')
+
     return wrap

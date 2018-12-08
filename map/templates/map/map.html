@@ -1,14 +1,13 @@
-{% load leaflet_tags %}
-<!DOCTYPE html>
+{% load staticfiles %}
 <html lang="en">
-
+{% load leaflet_tags %}
 
 <head>
-    ...
-    {% leaflet_js %}
-    {% leaflet_css %}
+    {% leaflet_js plugins="bouncemarker,draw" %}
+    {% leaflet_css plugins="bouncemarker,draw" %}
+    <link rel="stylesheet" href="{% static 'css/map.css' %}"/>
 </head>
 <body>
-    {% leaflet_map "yourmap" %}
+    {% leaflet_map "map" %}
 </body>
 </html>

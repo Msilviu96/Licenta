@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect
 from django.views.generic import View
-from django.http import HttpResponse
 
 from database import models
 from licenta.settings import SESSION_USER_ID_FIELD_NAME
+
+from datetime import datetime
 
 
 class Login(View):
@@ -52,6 +53,8 @@ class Register(View):
                 locality=request.POST.get('locality'),
                 county=request.POST.get('county'),
                 phone=request.POST.get('phone'),
+                birth_day=datetime.strptime(request.POST.get('bday'), '%Y-%m-%d'),
+                gender=request.POST.get('gender'),
                 username=request.POST.get('username'),
                 password=request.POST.get('password'),
             )
