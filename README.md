@@ -1,1 +1,1 @@
-# MONAPP python server
+# MONAPP Django server
