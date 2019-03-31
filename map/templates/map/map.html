@@ -6,8 +6,83 @@
     {% leaflet_js plugins="bouncemarker,draw" %}
     {% leaflet_css plugins="bouncemarker,draw" %}
     <link rel="stylesheet" href="{% static 'css/map.css' %}"/>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://js.pusher.com/4.4/pusher.worker.min.js"></script>
+
+    <script>
+         var token = {{token}};
+         var map;
+
+         $( document ).ready(function() {
+
+        });
+
+        $(window).on('beforeunload', function() {
+
+        });
+    </script>
+
+    <script>
+        function showCoordinates() {
+            $.ajax({
+                url: '/map/',
+                data: {'token': token },
+                dataType: 'json',
+                success: function (data) {
+                    if (data) {
+                        L.layerGroup().clearLayers();
+                        var latitude = data['latitude'];
+                        var longitude = data['longitude'];
+                        var name = data['name'];
+
+                        console.log(latitude, longitude);
+                        L.marker([latitude, longitude]).bindPopup(name).addTo(map);
+                        setTimeout(showCoordinates, 5000);
+                    }
+                }
+            });
+        }
+
+
+
+    </script>
+
+    <script type="text/javascript">
+        function map_init (m, options) {
+            map = m;
+            showCoordinates();
+
+
+        }
+
+
+    </script>
+
+
 </head>
+
 <body>
-    {% leaflet_map "map" %}
+<form>
+    <select id="kids">
+        {% for device in devices %}
+        <option value="{{ device.token }}"> {{ device.child.first_name }}</option>
+        {% endfor %}
+    </select>
+</form>
+<script>
+         $("#kids").change(function() {
+            token = $(this).find('option:selected').attr('value');
+         });
+
+</script>
+
+{% leaflet_map "map" callback="window.map_init" %}%}
+
 </body>
+
+
+{% if error %}
+<h1> alert({{ error }}) </h1>
+{% endif %}
+
 </html>

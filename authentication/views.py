@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.views.generic import View
 
 from database import models
-from licenta.settings import SESSION_USER_ID_FIELD_NAME
+from MONAPP.settings import SESSION_USER_ID_FIELD_NAME
 
 from datetime import datetime
 

@@ -1,4 +1,4 @@
-"""licenta URL Configuration
+"""MONAPP URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/2.0/topics/http/urls/
@@ -21,6 +21,7 @@ urlpatterns = [
     path(r'', include('authentication.urls')),
     path(r'map/', include('map.urls')),
     path(r'child/', include('child.urls')),
+    path(r'rest/', include('rest_api.urls')),
     path('admin/', admin.site.urls),
 
 ]

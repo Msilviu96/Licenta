@@ -1,6 +1,6 @@
 from django.shortcuts import redirect
 
-from licenta.settings import SESSION_USER_ID_FIELD_NAME
+from MONAPP.settings import SESSION_USER_ID_FIELD_NAME
 
 from django.contrib.sessions import models
 from django.urls import reverse
