@@ -3,144 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="848c1631-05df-4037-9721-cef0410e6268" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/authentication/authentification.py" beforeDir="false" afterPath="$PROJECT_DIR$/authentication/authentification.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/authentication/templates/authentication/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/authentication/templates/authentication/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/authentication/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/authentication/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/child/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/child/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/0001_initial.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/0002_auto_20181208_1945.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/0003_auto_20181208_2021.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/0004_auto_20181208_2032.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/database/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MONAPP/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/css/autocomplete.css" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/css/autocomplete.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/css/base.css" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/css/base.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/css/changelists.css" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/css/changelists.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/css/dashboard.css" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/css/dashboard.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/css/fonts.css" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/css/fonts.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/css/forms.css" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/css/forms.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/css/login.css" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/css/login.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/css/responsive.css" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/css/responsive.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/css/responsive_rtl.css" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/css/responsive_rtl.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/css/rtl.css" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/css/rtl.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/css/vendor/select2/LICENSE-SELECT2.md" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/css/vendor/select2/LICENSE-SELECT2.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/css/vendor/select2/select2.css" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/css/vendor/select2/select2.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/css/vendor/select2/select2.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/css/vendor/select2/select2.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/css/widgets.css" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/css/widgets.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/fonts/LICENSE.txt" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/fonts/LICENSE.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/fonts/README.txt" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/fonts/README.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/fonts/Roboto-Bold-webfont.woff" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/fonts/Roboto-Bold-webfont.woff" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/fonts/Roboto-Light-webfont.woff" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/fonts/Roboto-Light-webfont.woff" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/fonts/Roboto-Regular-webfont.woff" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/fonts/Roboto-Regular-webfont.woff" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/img/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/img/LICENSE" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/img/README.txt" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/img/README.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/img/calendar-icons.svg" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/img/calendar-icons.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/img/gis/move_vertex_off.svg" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/img/gis/move_vertex_off.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/img/gis/move_vertex_on.svg" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/img/gis/move_vertex_on.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/img/icon-addlink.svg" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/img/icon-addlink.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/img/icon-alert.svg" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/img/icon-alert.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/img/icon-calendar.svg" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/img/icon-calendar.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/img/icon-changelink.svg" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/img/icon-changelink.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/img/icon-clock.svg" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/img/icon-clock.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/img/icon-deletelink.svg" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/img/icon-deletelink.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/img/icon-no.svg" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/img/icon-no.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/img/icon-unknown-alt.svg" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/img/icon-unknown-alt.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/img/icon-unknown.svg" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/img/icon-unknown.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/img/icon-yes.svg" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/img/icon-yes.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/img/inline-delete.svg" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/img/inline-delete.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/img/search.svg" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/img/search.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/img/selector-icons.svg" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/img/selector-icons.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/img/sorting-icons.svg" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/img/sorting-icons.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/img/tooltag-add.svg" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/img/tooltag-add.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/img/tooltag-arrowright.svg" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/img/tooltag-arrowright.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/js/SelectBox.js" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/js/SelectBox.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/js/SelectFilter2.js" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/js/SelectFilter2.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/js/actions.js" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/js/actions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/js/actions.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/js/actions.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/js/admin/DateTimeShortcuts.js" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/js/admin/DateTimeShortcuts.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/js/admin/RelatedObjectLookups.js" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/js/admin/RelatedObjectLookups.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/js/autocomplete.js" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/js/autocomplete.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/js/calendar.js" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/js/calendar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/js/cancel.js" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/js/cancel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/js/change_form.js" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/js/change_form.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/js/collapse.js" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/js/collapse.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/js/collapse.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/js/collapse.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/js/core.js" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/js/core.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/js/inlines.js" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/js/inlines.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/js/inlines.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/js/inlines.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/js/jquery.init.js" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/js/jquery.init.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/js/popup_response.js" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/js/popup_response.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/js/prepopulate.js" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/js/prepopulate.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/js/prepopulate.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/js/prepopulate.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/js/prepopulate_init.js" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/js/prepopulate_init.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/js/timeparse.js" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/js/timeparse.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/js/urlify.js" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/js/urlify.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/js/vendor/jquery/LICENSE-JQUERY.txt" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/js/vendor/jquery/LICENSE-JQUERY.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/js/vendor/jquery/jquery.js" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/js/vendor/jquery/jquery.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/js/vendor/jquery/jquery.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/js/vendor/jquery/jquery.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/js/vendor/select2/LICENSE-SELECT2.md" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/js/vendor/select2/LICENSE-SELECT2.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/js/vendor/select2/i18n/ar.js" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/js/vendor/select2/i18n/ar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/js/vendor/select2/i18n/az.js" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/js/vendor/select2/i18n/az.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/js/vendor/select2/i18n/bg.js" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/js/vendor/select2/i18n/bg.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/js/vendor/select2/i18n/ca.js" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/js/vendor/select2/i18n/ca.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/js/vendor/select2/i18n/cs.js" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/js/vendor/select2/i18n/cs.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/js/vendor/select2/i18n/da.js" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/js/vendor/select2/i18n/da.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/js/vendor/select2/i18n/de.js" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/js/vendor/select2/i18n/de.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/js/vendor/select2/i18n/el.js" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/js/vendor/select2/i18n/el.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/js/vendor/select2/i18n/en.js" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/js/vendor/select2/i18n/en.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/js/vendor/select2/i18n/es.js" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/js/vendor/select2/i18n/es.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/js/vendor/select2/i18n/et.js" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/js/vendor/select2/i18n/et.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/js/vendor/select2/i18n/eu.js" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/js/vendor/select2/i18n/eu.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/js/vendor/select2/i18n/fa.js" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/js/vendor/select2/i18n/fa.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/js/vendor/select2/i18n/fi.js" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/js/vendor/select2/i18n/fi.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/js/vendor/select2/i18n/fr.js" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/js/vendor/select2/i18n/fr.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/js/vendor/select2/i18n/gl.js" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/js/vendor/select2/i18n/gl.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/js/vendor/select2/i18n/he.js" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/js/vendor/select2/i18n/he.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/js/vendor/select2/i18n/hi.js" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/js/vendor/select2/i18n/hi.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/js/vendor/select2/i18n/hr.js" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/js/vendor/select2/i18n/hr.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/js/vendor/select2/i18n/hu.js" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/js/vendor/select2/i18n/hu.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/js/vendor/select2/i18n/id.js" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/js/vendor/select2/i18n/id.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/js/vendor/select2/i18n/is.js" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/js/vendor/select2/i18n/is.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/js/vendor/select2/i18n/it.js" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/js/vendor/select2/i18n/it.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/js/vendor/select2/i18n/ja.js" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/js/vendor/select2/i18n/ja.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/js/vendor/select2/i18n/km.js" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/js/vendor/select2/i18n/km.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/js/vendor/select2/i18n/ko.js" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/js/vendor/select2/i18n/ko.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/js/vendor/select2/i18n/lt.js" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/js/vendor/select2/i18n/lt.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/js/vendor/select2/i18n/lv.js" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/js/vendor/select2/i18n/lv.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/js/vendor/select2/i18n/mk.js" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/js/vendor/select2/i18n/mk.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/js/vendor/select2/i18n/ms.js" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/js/vendor/select2/i18n/ms.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/js/vendor/select2/i18n/nb.js" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/js/vendor/select2/i18n/nb.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/js/vendor/select2/i18n/nl.js" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/js/vendor/select2/i18n/nl.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/js/vendor/select2/i18n/pl.js" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/js/vendor/select2/i18n/pl.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/js/vendor/select2/i18n/pt-BR.js" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/js/vendor/select2/i18n/pt-BR.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/js/vendor/select2/i18n/pt.js" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/js/vendor/select2/i18n/pt.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/js/vendor/select2/i18n/ro.js" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/js/vendor/select2/i18n/ro.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/js/vendor/select2/i18n/ru.js" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/js/vendor/select2/i18n/ru.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/js/vendor/select2/i18n/sk.js" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/js/vendor/select2/i18n/sk.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/js/vendor/select2/i18n/sr-Cyrl.js" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/js/vendor/select2/i18n/sr-Cyrl.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/js/vendor/select2/i18n/sr.js" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/js/vendor/select2/i18n/sr.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/js/vendor/select2/i18n/sv.js" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/js/vendor/select2/i18n/sv.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/js/vendor/select2/i18n/th.js" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/js/vendor/select2/i18n/th.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/js/vendor/select2/i18n/tr.js" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/js/vendor/select2/i18n/tr.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/js/vendor/select2/i18n/uk.js" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/js/vendor/select2/i18n/uk.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/js/vendor/select2/i18n/vi.js" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/js/vendor/select2/i18n/vi.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/js/vendor/select2/i18n/zh-CN.js" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/js/vendor/select2/i18n/zh-CN.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/js/vendor/select2/i18n/zh-TW.js" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/js/vendor/select2/i18n/zh-TW.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/js/vendor/select2/select2.full.js" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/js/vendor/select2/select2.full.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/js/vendor/select2/select2.full.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/js/vendor/select2/select2.full.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/js/vendor/xregexp/LICENSE-XREGEXP.txt" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/js/vendor/xregexp/LICENSE-XREGEXP.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/js/vendor/xregexp/xregexp.js" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/js/vendor/xregexp/xregexp.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/admin/js/vendor/xregexp/xregexp.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/admin/js/vendor/xregexp/xregexp.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/css/base.css" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/css/base.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/css/form.css" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/css/form.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/static/css/navbar.css" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/static/css/navbar.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/licenta/wsgi.py" beforeDir="false" afterPath="$PROJECT_DIR$/MONAPP/wsgi.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/manage.py" beforeDir="false" afterPath="$PROJECT_DIR$/manage.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/map/templates/map/map.html" beforeDir="false" afterPath="$PROJECT_DIR$/map/templates/map/map.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/map/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/map/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/map/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/map/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rest_api/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/rest_api/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -150,11 +18,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/map/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="208">
-              <caret line="21" column="46" selection-start-line="21" selection-start-column="46" selection-end-line="21" selection-end-column="46" />
+            <state relative-caret-position="238">
+              <caret line="86" column="29" lean-forward="true" selection-start-line="86" selection-start-column="29" selection-end-line="86" selection-end-column="29" />
               <folding>
                 <element signature="e#0#45#0" expanded="true" />
               </folding>
@@ -163,12 +31,12 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/rest_api/views.py">
+        <entry file="file://$PROJECT_DIR$/authentication/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="463">
-              <caret line="33" column="31" selection-start-line="33" selection-start-column="31" selection-end-line="33" selection-end-column="31" />
+            <state relative-caret-position="153">
+              <caret line="9" column="1" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
               <folding>
-                <element signature="e#0#33#0" expanded="true" />
+                <element signature="e#0#32#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -178,7 +46,7 @@
         <entry file="file://$PROJECT_DIR$/map/urls.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="102">
-              <caret line="6" column="12" selection-start-line="6" selection-start-column="12" selection-end-line="6" selection-end-column="12" />
+              <caret line="7" column="23" selection-start-line="7" selection-start-column="23" selection-end-line="7" selection-end-column="23" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
               </folding>
@@ -196,31 +64,46 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MONAPP/settings.py">
+        <entry file="file://$PROJECT_DIR$/rest_api/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="432">
-              <caret line="147" selection-start-line="147" selection-end-line="147" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/map/templates/map/map.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="310">
-              <caret line="36" selection-start-line="36" selection-end-line="36" />
+            <state relative-caret-position="119">
+              <caret line="7" column="66" selection-start-line="7" selection-start-column="66" selection-end-line="7" selection-end-column="66" />
+              <folding>
+                <element signature="e#0#32#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/child/views.py">
+        <entry file="file://$PROJECT_DIR$/rest_api/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="31" column="8" selection-start-line="31" selection-start-column="8" selection-end-line="31" selection-end-column="8" />
+            <state relative-caret-position="731">
+              <caret line="43" lean-forward="true" selection-start-line="43" selection-end-line="43" />
               <folding>
-                <element signature="e#0#45#0" expanded="true" />
+                <element signature="e#0#33#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/database/models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="323">
+              <caret line="21" column="12" selection-start-line="21" selection-start-column="12" selection-end-line="21" selection-end-column="12" />
+              <folding>
+                <element signature="e#0#28#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/map/templates/map/map.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="378">
+              <caret line="148" column="50" selection-start-line="148" selection-start-column="50" selection-end-line="148" selection-end-column="50" />
             </state>
           </provider>
         </entry>
@@ -228,20 +111,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/authentication/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="14" column="59" selection-start-line="14" selection-start-column="59" selection-end-line="14" selection-end-column="59" />
+            <state relative-caret-position="255">
+              <caret line="21" column="27" selection-start-line="21" selection-start-column="27" selection-end-line="21" selection-end-column="27" />
               <folding>
                 <element signature="e#0#45#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/authentication/templates/authentication/login.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="12" column="41" selection-start-line="12" selection-start-column="41" selection-end-line="12" selection-end-column="41" />
             </state>
           </provider>
         </entry>
@@ -311,15 +185,15 @@
         <option value="$PROJECT_DIR$/MONAPP/routing.py" />
         <option value="$PROJECT_DIR$/MONAPP/asgi.py" />
         <option value="$PROJECT_DIR$/child/views.py" />
-        <option value="$PROJECT_DIR$/map/urls.py" />
         <option value="$PROJECT_DIR$/database/models.py" />
         <option value="$PROJECT_DIR$/authentication/templates/authentication/login.html" />
         <option value="$PROJECT_DIR$/MONAPP/pusher.py" />
         <option value="$PROJECT_DIR$/rest_api/urls.py" />
         <option value="$PROJECT_DIR$/MONAPP/settings.py" />
-        <option value="$PROJECT_DIR$/rest_api/views.py" />
-        <option value="$PROJECT_DIR$/map/views.py" />
+        <option value="$PROJECT_DIR$/map/urls.py" />
         <option value="$PROJECT_DIR$/map/templates/map/map.html" />
+        <option value="$PROJECT_DIR$/map/views.py" />
+        <option value="$PROJECT_DIR$/rest_api/views.py" />
       </list>
     </option>
   </component>
@@ -336,7 +210,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -347,19 +220,16 @@
             <path>
               <item name="MONAPP" type="b2602c69:ProjectViewProjectNode" />
               <item name="MONAPP" type="462c0819:PsiDirectoryNode" />
-              <item name="map" type="462c0819:PsiDirectoryNode" />
+              <item name="authentication" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="MONAPP" type="b2602c69:ProjectViewProjectNode" />
               <item name="MONAPP" type="462c0819:PsiDirectoryNode" />
-              <item name="map" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="database" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="MONAPP" type="b2602c69:ProjectViewProjectNode" />
               <item name="MONAPP" type="462c0819:PsiDirectoryNode" />
-              <item name="map" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
               <item name="map" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -380,6 +250,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -557,7 +428,7 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32719395" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32936078" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.3997833" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -575,7 +446,6 @@
     <option featureType="com.intellij.fileTypeFactory" implementationName="*.css" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/database/views.py" />
     <entry file="file://$PROJECT_DIR$/authentification/forms/login_form.py" />
     <entry file="file://$PROJECT_DIR$/database/admin.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -743,23 +613,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/database/models.py">
+    <entry file="file://$PROJECT_DIR$/MONAPP/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="21" column="12" selection-start-line="21" selection-start-column="12" selection-end-line="21" selection-end-column="12" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="415">
+          <caret line="143" column="33" lean-forward="true" selection-start-line="143" selection-start-column="33" selection-end-line="143" selection-end-column="33" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/authentication/urls.py">
+    <entry file="file://$PROJECT_DIR$/authentication/templates/authentication/login.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="9" column="1" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="204">
+          <caret line="12" column="41" selection-start-line="12" selection-start-column="41" selection-end-line="12" selection-end-column="41" />
         </state>
       </provider>
     </entry>
@@ -773,27 +637,54 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://E:/Program Files/Python37/Lib/tokenize.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="446" selection-start-line="446" selection-end-line="446" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/map/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="7" column="23" selection-start-line="7" selection-start-column="23" selection-end-line="7" selection-end-column="23" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MONAPP/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" selection-start-line="1" selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="21" column="12" selection-start-line="21" selection-start-column="12" selection-end-line="21" selection-end-column="12" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/authentication/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="14" column="59" selection-start-line="14" selection-start-column="59" selection-end-line="14" selection-end-column="59" />
+        <state relative-caret-position="255">
+          <caret line="21" column="27" selection-start-line="21" selection-start-column="27" selection-end-line="21" selection-end-column="27" />
           <folding>
             <element signature="e#0#45#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/authentication/templates/authentication/login.html">
+    <entry file="file://$PROJECT_DIR$/map/templates/map/map.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="41" selection-start-line="12" selection-start-column="41" selection-end-line="12" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MONAPP/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="147" selection-start-line="147" selection-end-line="147" />
+        <state relative-caret-position="378">
+          <caret line="148" column="50" selection-start-line="148" selection-start-column="50" selection-end-line="148" selection-end-column="50" />
         </state>
       </provider>
     </entry>
@@ -809,45 +700,31 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/rest_api/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="463">
-          <caret line="33" column="31" selection-start-line="33" selection-start-column="31" selection-end-line="33" selection-end-column="31" />
+        <state relative-caret-position="731">
+          <caret line="43" lean-forward="true" selection-start-line="43" selection-end-line="43" />
           <folding>
             <element signature="e#0#33#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/map/urls.py">
+    <entry file="file://$PROJECT_DIR$/authentication/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="12" selection-start-line="6" selection-start-column="12" selection-end-line="6" selection-end-column="12" />
+        <state relative-caret-position="153">
+          <caret line="9" column="1" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
           <folding>
             <element signature="e#0#32#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MONAPP/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" selection-start-line="1" selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/map/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="21" column="46" selection-start-line="21" selection-start-column="46" selection-end-line="21" selection-end-column="46" />
+        <state relative-caret-position="238">
+          <caret line="86" column="29" lean-forward="true" selection-start-line="86" selection-start-column="29" selection-end-line="86" selection-end-column="29" />
           <folding>
             <element signature="e#0#45#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/map/templates/map/map.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="310">
-          <caret line="36" selection-start-line="36" selection-end-line="36" />
         </state>
       </provider>
     </entry>

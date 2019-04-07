@@ -1,11 +1,13 @@
 from django.shortcuts import render, redirect
 from django.views.generic import View
 from authentication.authentification import logged_in_only
-from django.http import JsonResponse
-
+from django.http import JsonResponse, QueryDict
+from django.views.decorators.csrf import csrf_exempt
 
 from database import models
 from MONAPP.settings import SESSION_USER_ID_FIELD_NAME
+
+import json
 from MONAPP.pusher import Pusher
 
 
@@ -40,11 +42,6 @@ class Map(View):
             'token': activated_devices[0].token
         })
 
-
-    def post(self, request):
-
-        return render(request, self.html, context={})
-
     @staticmethod
     def get_activated_devices(kids):
         activated_devices = list()
@@ -54,3 +51,51 @@ class Map(View):
                 activated_devices.append(device)
 
         return activated_devices
+
+
+class DangerZone(View):
+    @csrf_exempt
+    def dispatch(self, *args, **kwargs):
+        return super(DangerZone, self).dispatch(*args, **kwargs)
+
+    @logged_in_only
+    def post(self, request):
+        coordinates = str(json.loads(request.POST.get('data'))['geometry']['coordinates'][0])
+        parent = models.Parent.objects.filter(pk=request.session.get(SESSION_USER_ID_FIELD_NAME)).first()
+
+        try:
+            models.Danger_zone.objects.create(
+                parent=parent,
+                title='',
+                description='',
+                coordinates=coordinates
+            )
+            return JsonResponse({'error': ''})
+        except Exception as e:
+            return JsonResponse({'error': e})
+
+    @logged_in_only
+    def get(self, request):
+        parent = models.Parent.objects.filter(pk=request.session.get(SESSION_USER_ID_FIELD_NAME)).first()
+        danger_zones = models.Danger_zone.objects.filter(parent=parent).select_related()
+        danger_zones_coordinates = list()
+
+        for danger_zone in danger_zones:
+            danger_zones_coordinates.append(eval(danger_zone.coordinates))
+            print(danger_zone.coordinates)
+
+        return JsonResponse({
+            'data': danger_zones_coordinates
+        })
+
+    @logged_in_only
+    def delete(self, request):
+        delete = QueryDict(request.body)
+        coordinates = str(json.loads(delete.get('data'))['geometry']['coordinates'][0])
+
+        danger_zone = models.Danger_zone.objects.get(coordinates=coordinates)
+        danger_zone.delete()
+
+        return JsonResponse({
+            'error': ''
+        })

@@ -7,22 +7,22 @@
     {% leaflet_css plugins="bouncemarker,draw" %}
     <link rel="stylesheet" href="{% static 'css/map.css' %}"/>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="https://js.pusher.com/4.4/pusher.worker.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.css"/>
 
     <script>
          var token = {{token}};
          var map;
+         var dangerZones;
 
          $( document ).ready(function() {
 
-        });
+         });
 
         $(window).on('beforeunload', function() {
 
         });
-    </script>
 
-    <script>
         function showCoordinates() {
             $.ajax({
                 url: '/map/',
@@ -35,7 +35,6 @@
                         var longitude = data['longitude'];
                         var name = data['name'];
 
-                        console.log(latitude, longitude);
                         L.marker([latitude, longitude]).bindPopup(name).addTo(map);
                         setTimeout(showCoordinates, 5000);
                     }
@@ -44,18 +43,120 @@
         }
 
 
-
-    </script>
-
-    <script type="text/javascript">
         function map_init (m, options) {
             map = m;
+            L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+
+            var drawnItems = new L.FeatureGroup();
+            map.addLayer(drawnItems);
+            var drawControl = new L.Control.Draw({
+                draw: {
+                    polygon: {
+                        allowIntersection: false,
+                        drawError: {
+                            color: '#e1e100',
+                            message: '<strong>Oh snap!<strong> you can\'t draw that!' // Message that will show when intersect
+                        },
+                        shapeOptions: {
+                            color: '#ff0000'
+                        }
+                    },
+                    marker: false,
+                    polyline: false,
+                    rectangle: false,
+                    circle: false,
+                    circlemarker: false
+                },
+                 edit: {
+                     featureGroup: drawnItems,
+                     edit: false
+                 }
+            });
+            map.addControl(drawControl);
+
+            function addNonGroupLayers(sourceLayer, targetGroup) {
+              if (sourceLayer instanceof L.LayerGroup) {
+                sourceLayer.eachLayer(function (layer) {
+                  addNonGroupLayers(layer, targetGroup);
+                });
+              } else {
+                targetGroup.addLayer(sourceLayer);
+              }
+            }
+
+
+            //Adding danger zones
+            $.ajax({
+                url: '/map/danger_zones/',
+                success: function(response){
+                    var dangerZones = [];
+                    for (const coordinates of response['data']){
+                        var dangerZone = {
+                            "type": "Feature",
+                            "geometry" :{
+                                "type": "Polygon",
+                                "coordinates": [coordinates],
+                             }
+                        }
+                        dangerZones.push(dangerZone);
+                        console.log(dangerZone);
+                    }
+                    var layers = L.geoJSON(
+                        dangerZones, {
+                            style : {color: '#ff0000'}
+                        }
+                    ).addTo(map);
+
+                    addNonGroupLayers(layers, drawnItems);
+
+                }
+            });
+
+
+            //Events
+            map.on('draw:created', function(e) {
+                var type = e.layerType,
+                layer = e.layer;
+
+                if (type === 'polygon') {
+                    var points = layer._latlngs;
+                    var geojson = layer.toGeoJSON();
+
+                    $.ajax({
+                        type: "POST",
+                        url: "/map/danger_zones/",
+                        data: {
+                            'data': JSON.stringify(geojson)
+                        }
+                    });
+               }
+               drawnItems.addLayer(layer);
+            });
+
+            map.on('draw:deleted', function(e) {
+                var layers = e.layers;
+                layers.eachLayer(function(layer) {
+                    if (layer instanceof L.Polygon) {
+                        var points = layer._latlngs;
+                        var geojson = layer.toGeoJSON();
+
+                        $.ajax({
+                            type: 'DELETE',
+                            url: '/map/danger_zones/',
+                            data: {
+                                'data': JSON.stringify(geojson)
+                            }
+                        });
+                    }
+                });
+            });
+
+
+
             showCoordinates();
-
-
         }
-
-
     </script>
 
 
@@ -69,11 +170,11 @@
         {% endfor %}
     </select>
 </form>
+
 <script>
          $("#kids").change(function() {
             token = $(this).find('option:selected').attr('value');
          });
-
 </script>
 
 {% leaflet_map "map" callback="window.map_init" %}%}

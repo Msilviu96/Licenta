@@ -139,8 +139,8 @@ LEAFLET_CONFIG = {
     'SCALE': 'both',
     'PLUGINS': {
         'name-of-plugin': {
-            'css': ['relative/path/to/stylesheet.css', '/root/path/to/stylesheet.css'],
-            'js': 'http://absolute-url.example.com/path/to/script.js',
+            'css': 'https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.2/leaflet.draw.css',
+            'js': 'https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.2/leaflet.draw.js',
             'auto-include': True,
         },
     },
