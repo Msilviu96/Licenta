@@ -6,17 +6,31 @@
     {% leaflet_js plugins="bouncemarker,draw" %}
     {% leaflet_css plugins="bouncemarker,draw" %}
     <link rel="stylesheet" href="{% static 'css/map.css' %}"/>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <script data-require="jquery" data-semver="2.1.4" src="https://code.jquery.com/jquery-2.1.4.js"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.css"/>
 
+
     <script>
-         var token = {{token}};
+         var token = "{{token}}";
          var map;
          var dangerZones;
+         var currentMarker;
+         var dangerZoneModal;
+         var childPickModal;
 
          $( document ).ready(function() {
+            var elem = document.querySelector('#dangerZoneModal');
+            dangerZoneModal = M.Modal.init(elem);
 
+            elem = document.querySelector('#childPickModal');
+            childPickModal = M.Modal.init(elem);
          });
 
         $(window).on('beforeunload', function() {
@@ -35,19 +49,32 @@
                         var longitude = data['longitude'];
                         var name = data['name'];
 
-                        L.marker([latitude, longitude]).bindPopup(name).addTo(map);
-                        setTimeout(showCoordinates, 5000);
+                        if (currentMarker){
+                            map.removeLayer(currentMarker);
+                        }
+
+                        currentMarker = L.marker([latitude, longitude]).bindPopup(name).addTo(map);
+                        setTimeout(showCoordinates, 1000);
+
+                        var progressBar = $(".progress").get(0);
+                        if(progressBar){
+                            map.panTo(new L.LatLng(latitude, longitude));
+                            $(".progress").remove();
+                            childPickModal.close();
+                        }
+
                     }
                 }
             });
         }
-
 
         function map_init (m, options) {
             map = m;
             L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
                 attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
             }).addTo(map);
+
+            showCoordinates();
 
             var drawnItems = new L.FeatureGroup();
             map.addLayer(drawnItems);
@@ -57,7 +84,7 @@
                         allowIntersection: false,
                         drawError: {
                             color: '#e1e100',
-                            message: '<strong>Oh snap!<strong> you can\'t draw that!' // Message that will show when intersect
+                            message: '<strong>Oh snap!<strong> you can\'t draw that!'
                         },
                         shapeOptions: {
                             color: '#ff0000'
@@ -76,43 +103,62 @@
             });
             map.addControl(drawControl);
 
-            function addNonGroupLayers(sourceLayer, targetGroup) {
-              if (sourceLayer instanceof L.LayerGroup) {
-                sourceLayer.eachLayer(function (layer) {
-                  addNonGroupLayers(layer, targetGroup);
-                });
-              } else {
-                targetGroup.addLayer(sourceLayer);
-              }
-            }
+            var childControl = L.Control.extend({
+                options: {
+                    position: 'topright'
+                },
+                onAdd: function (map) {
+                    var background = L.DomUtil.create('i', 'material-icons');
+                    background.innerHTML = 'child_care';
 
+                    var container = L.DomUtil.create('a', 'btn-floating btn-medium waves-effect waves-light deep-orange');
+                    container.appendChild(background);
+
+
+                    container.onclick = function(){
+                      childPickModal.open();
+                    }
+
+                    return container;
+                }
+            });
+            map.addControl(new childControl);
+
+            function addNonGroupLayers(sourceLayer, popup, targetGroup) {
+                if (sourceLayer instanceof L.LayerGroup) {
+                    sourceLayer.eachLayer(function (layer) {
+                        addNonGroupLayers(layer, popup, targetGroup);
+                    });
+                } else {
+                    sourceLayer.bindPopup(popup)
+                    targetGroup.addLayer(sourceLayer);
+                }
+            }
 
             //Adding danger zones
             $.ajax({
                 url: '/map/danger_zones/',
                 success: function(response){
                     var dangerZones = [];
-                    for (const coordinates of response['data']){
+                    for (const entry of response['data']){
                         var dangerZone = {
                             "type": "Feature",
                             "geometry" :{
                                 "type": "Polygon",
-                                "coordinates": [coordinates],
+                                "coordinates": [entry[0]],
                              }
                         }
                         dangerZones.push(dangerZone);
-                        console.log(dangerZone);
+                        var layer = L.geoJSON(
+                            dangerZone, {
+                                style: {color: '#ff0000'}
+                            }
+                        );
+
+                        addNonGroupLayers(layer, entry[1], drawnItems);
                     }
-                    var layers = L.geoJSON(
-                        dangerZones, {
-                            style : {color: '#ff0000'}
-                        }
-                    ).addTo(map);
-
-                    addNonGroupLayers(layers, drawnItems);
-
                 }
-            });
+             });
 
 
             //Events
@@ -120,19 +166,32 @@
                 var type = e.layerType,
                 layer = e.layer;
 
-                if (type === 'polygon') {
-                    var points = layer._latlngs;
-                    var geojson = layer.toGeoJSON();
+                dangerZoneModal.open();
 
-                    $.ajax({
-                        type: "POST",
-                        url: "/map/danger_zones/",
-                        data: {
-                            'data': JSON.stringify(geojson)
+                $('#Submit').unbind().click(function(){
+                    var name = $("#dangerZoneModal #fz_name").val().trim();
+                    if (name){
+                        dangerZoneModal.close();
+
+                        layer.bindPopup(name);
+
+                        if (type === 'polygon') {
+                            var points = layer._latlngs;
+                            var geojson = layer.toGeoJSON();
+                            console.log(geojson);
+
+                            $.ajax({
+                                type: "POST",
+                                url: "/map/danger_zones/",
+                                data: {
+                                    'data': JSON.stringify(geojson),
+                                    'title': name
+                                }
+                            });
                         }
-                    });
-               }
-               drawnItems.addLayer(layer);
+                        drawnItems.addLayer(layer);
+                    }
+                });
             });
 
             map.on('draw:deleted', function(e) {
@@ -152,32 +211,79 @@
                     }
                 });
             });
-
-
-
-            showCoordinates();
         }
+
+
+
+
     </script>
-
-
 </head>
 
 <body>
-<form>
-    <select id="kids">
-        {% for device in devices %}
-        <option value="{{ device.token }}"> {{ device.child.first_name }}</option>
-        {% endfor %}
-    </select>
-</form>
+{% leaflet_map "map" callback="window.map_init" %}
+
+<div id="dangerZoneModal" class="modal">
+    <div class="modal-content">
+        <h4>Enter forbidden zone name</h4>
+
+        <div class="row">
+            <form class="col s12">
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="fz_name" type="text" class="validate">
+                        <label for="fz_name">Name</label>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a class=" modal-action modal-close waves-effect waves-green btn-flat" id="Submit">Submit</a>
+    </div>
+</div>
+
+<!-- Modal Structure -->
+<div id="childPickModal" class="modal bottom-sheet">
+    <div class="modal-content">
+        <h4>Pick one of your kids!</h4>
+
+        <ul class="collection">
+            {% for device in devices %}
+            <a class="collection-item avatar">
+                <img src="{{ device.child.image.url }}" alt class="circle">
+                <h5 id="{{ device.token }}">{{ device.child.first_name }}</h5>
+                {% if device.mockedLocation == True%}
+                    <p style="color:red">Location is mocked!</p>
+                {% endif %}
+            </a>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
 
 <script>
-         $("#kids").change(function() {
-            token = $(this).find('option:selected').attr('value');
-         });
+        function createElement(d,c){
+            var e = document.createElement(d);
+            e.className = c;
+            return e;
+        }
+        $('a.collection-item.avatar').click(function(e){
+            var progressBar = createElement("div", "progress");
+            var indeterminateDiv = createElement("div", "indeterminate");
+            progressBar.appendChild(indeterminateDiv);
+
+            var check = $(event.target).attr('class');
+            if(check == null){
+                token = $(event.target).attr('id');
+                $(".modal-content").append(progressBar);
+            }
+            if(check == 'collection-item avatar'){
+                token = $(event.target).context.children[1].id;
+                $(".modal-content").append(progressBar);
+            }
+        });
 </script>
 
-{% leaflet_map "map" callback="window.map_init" %}%}
 
 </body>
 

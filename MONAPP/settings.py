@@ -15,7 +15,6 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
@@ -27,6 +26,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'MONAPP\media')
 
 # Application definition
 
@@ -76,7 +77,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'MONAPP.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
@@ -86,7 +86,6 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
@@ -106,7 +105,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
 
@@ -119,7 +117,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
@@ -144,5 +141,61 @@ LEAFLET_CONFIG = {
             'auto-include': True,
         },
     },
+    'TILES': [
+        ('Streets', 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+         {'attribution': '&copy; Big eye', 'maxZoom': 20, 'subdomains': ['mt0', 'mt1', 'mt2', 'mt3']}),
+        ('Hybrid', 'http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}',
+         {'attribution': '&copy; Big eye', 'maxZoom': 20, 'subdomains': ['mt0', 'mt1', 'mt2', 'mt3']}),
+        ('Satellite', 'http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',
+         {'attribution': '&copy; Big eye', 'maxZoom': 20, 'subdomains': ['mt0', 'mt1', 'mt2', 'mt3']}),
+    ]
 }
 
+if __name__ == '__main__':
+    apps_database = [
+        {'name': 'app_1', 'blocked': "N"},
+        {'name': 'app_2', 'blocked': "Y"},
+        {'name': 'app_3', 'blocked': "Y"},
+    ]
+
+    apps_received = [
+        {'name': 'app_1', 'blocked': "N"},
+        {'name': 'app_2', 'blocked': "N"},
+        {'name': 'app_4', 'blocked': 'N'}
+    ]
+
+    apps_received = sorted(apps_received, key=lambda k: k['name'])
+
+    apps_toSave = list()
+
+    comparatii = 0
+    flag_append = False
+
+    for i in range(len(apps_received)):
+        for j in range(len(apps_database)):
+            flag_append = True
+            comparatii += 1
+            if apps_received[i]['name'] == apps_database[j]['name']:
+                apps_toSave.append({
+                    'name': apps_database[j]['name'],
+                    'blocked': apps_database[j]['blocked']
+                })
+                flag_append = False
+                break
+            elif apps_received[i]['name'][0] > apps_database[j]['name'][0]:
+                apps_toSave.append({
+                    'name': apps_received[i]['name'],
+                    'blocked': apps_received[i]['blocked']
+                })
+                flag_append = False
+                break
+        if flag_append:
+            apps_toSave.append({
+                'name': apps_received[i]['name'],
+                'blocked': apps_received[i]['blocked']
+            })
+
+    for app_toSave in apps_toSave:
+        print(app_toSave)
+
+    print(comparatii)

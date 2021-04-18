@@ -1,0 +1,16 @@
+body{
+  background-image: url(http://orig03.deviantart.net/f7c4/f/2015/030/b/7/_minflat__default_windows_8_1_wallpaper__4k__by_dakoder-d7j7i5a.jpg);
+  height: 100%;
+  weight: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  height: 50%;
+}

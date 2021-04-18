@@ -1,0 +1,218 @@
+{% extends "authentication/base.html" %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/profile.css' %}"/>
+
+
+<head>
+
+</head>
+
+{% block kids %}
+
+<div class="container">
+    <div class="row">
+
+        {% for kid, device, status, apps in grouped %}
+        <div class="col s12 m6 l4">
+            <div class="card hoverable">
+                <div class="card-image"
+                     style="background-image:url({{ kid.image.url }}); background-size:cover;background-position:center;">
+                    <a class="btn-floating activator halfway-fab waves-effect waves-light red"><i
+                            class="material-icons">settings</i></a>
+                </div>
+                <div class="card-content">
+                    <span class="card-title grey-text text-darken-4">{{ kid.first_name }}</span>
+                    <p>{{ status }} [{{ device.token}}]</p>
+                </div>
+                <div class="card-reveal">
+                    <span class="card-title grey-text text-darken-4">Settings<i
+                            class="material-icons right">close</i></span>
+                    <ul class="tabs" id="childSettings">
+                        <li class="tab"><a href="#{{ device.token }}_information" class="active">Information</a></li>
+                        <li class="tab"><a href="#{{ device.token }}_profile_pic">Profile Image</a></li>
+                        <li class="tab"><a href="#{{ device.token }}_message">Chat</a></li>
+                        <li class="tab"><a href="#{{ device.token }}_apps">Applications</a></li>
+                    </ul>
+
+                    <div id="{{ device.token }}_information">
+                        <table class="bordered highlight">
+                            <tbody>
+                            <tr>
+                                <td>First Name</td>
+                                <td>
+                                    <div class="input-field col s12">
+                                        <input id="first_name" type="text" class="validate">
+                                        <label for="first_name">{{ kid.first_name }}</label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Last Name</td>
+                                <td>
+                                    <div class="input-field col s12">
+                                        <input id="last_name" type="text" class="validate">
+                                        <label for="last_name">{{ kid.last_name }}</label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Birthday</td>
+                                <td>{{ kid.birth_day }}</td>
+                            </tr>
+                            <tr>
+                                <td>Token</td>
+                                <td>{{ device.token }}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <div class="input-field col s12 m12">
+                            <button class="col s12 waves-effect waves-light btn deep-orange info" id="submit-form"
+                                    type="submit">Save
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="{{ device.token }}_profile_pic">
+                        <div class="input-field col l12"></div>
+                        <div class="input-field col l12"></div>
+                        <div class="input-field col l12"></div>
+                        <div class="input-field col l12"></div>
+                        <div class="input-field col l12"></div>
+                        <div class="input-field col l12"></div>
+                        <div class="file-field input-field">
+
+                            <div class="btn deep-orange">
+                                <span>Browse</span>
+                                <input type="file">
+                            </div>
+                            <div class="file-path-wrapper">
+                                <input class="file-path validate" type="text">
+                            </div>
+                        </div>
+                        <div class="input-field col s12 m12">
+                            <button class="col s12 waves-effect waves-light btn deep-orange picture" id="submit_form"
+                                    type="submit">Save
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="{{ device.token }}_message">
+                        <ul class="collection" id="{{ device.token }}_history"></ul>
+                        <script  type="text/javascript">
+                        var i = 0;
+                        reloadMessages('{{ device.token }}');
+
+                        function reloadMessages(token){
+                            i = i+1;
+                            console.log(i);
+                            $.ajax({
+                                type: "GET",
+                                url: "rest/message/",
+                                data: {
+                                    'token': token
+                                },
+                                success: function (data) {
+                                    var history = document.getElementById(token+'_history');
+                                    history.innerHTML = '';
+                                    if (data['messages'].length == 0 ) {
+                                        header = document.createElement('li');
+                                        header.className = 'collection-item';
+                                        header.innerHTML = 'No messages sent!'
+                                        document.getElementById(token+'_history').appendChild(header);
+                                    }
+                                    data['messages'].forEach(function(message){
+                                        console.log(message);
+                                        var node = document.createElement('li');
+                                        node.className = 'collection-item';
+                                        node.innerHTML = message['message'];
+
+                                        var secondaryContent = document.createElement('li');
+                                        secondaryContent.className = 'secondary-content';
+                                        node.appendChild(secondaryContent);
+
+                                        if(message['sent'] == true && message['read'] == false){
+                                            var icon = document.createElement('i');
+                                            icon.className = 'material-icons';
+                                            icon.innerHTML = 'done';
+                                            secondaryContent.appendChild(icon);
+                                        }
+                                        else if(message['read'] == true){
+                                            var icon = document.createElement('i');
+                                            icon.className = 'material-icons';
+                                            icon.innerHTML = 'done_all';
+                                            secondaryContent.appendChild(icon);
+                                        }
+                                        history.appendChild(node);
+                                });
+                                },
+                                complete: function(data){
+                                    setTimeout(reloadMessages(token), 1000);
+                                }
+                            });
+                         };
+
+
+                         </script>
+                        <div class="input-field col l12">
+                            <textarea id="message_text" class="materialize-textarea" data-length="300"></textarea>
+                            <label for="message_text">Message</label>
+                        </div>
+                        <div class="input-field col s12 m12">
+                            <button token="{{ device.token }}" class="col s12 waves-effect waves-light btn deep-orange message"
+                                    id="send_message" type="submit">Send
+                            </button>
+                        </div>
+
+
+
+
+
+                    </div>
+
+                    <div id="{{ device.token }}_apps">
+                        <table class="bordered highlight">
+                            <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Blocked</th>
+                            </tr>
+                            </thead>
+                            <tbody id="apps_status">
+                            {% for app in apps %}
+                            <tr>
+                                <td>{{ app.name }}</td>
+                                {% if app.blocked == 'Y' %}
+                                <td>
+                                    <div class="switch"><label><input type="checkbox" checked>
+                                        <span class="lever"></span></label></div>
+                                </td>
+                                {% else %}
+                                <td>
+                                    <div class="switch"><label><input type="checkbox">
+                                        <span class="lever"></span></label></div>
+                                </td>
+                                {% endif %}
+                            </tr>
+                            {% endfor %}
+                            </tbody>
+
+                            <div class="input-field col s12 m12">
+                                <button token="{{ device.token }}"
+                                        class="col s12 waves-effect waves-light btn deep-orange apps"
+                                        id="save_blocked_apps" type="submit">Save
+                                </button>
+                            </div>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+
+
+
+

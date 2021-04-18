@@ -1,14 +1,15 @@
-<!DOCTYPE html>
+{% load staticfiles %}
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
-
-    <a href="{% url 'authentication:login'%}">Login</a>
-    <a href="{% url 'authentication:register'%}">Register</a>
-
-
+	<link rel="stylesheet" href="{% static 'css/home.css' %}"/>
 </head>
-<body>
 
+<body>
+    <a href="{% url 'authentication:login'%}" class="waves-effect waves-light btn">Login</a>
+    <a href="{% url 'authentication:register'%}" class="waves-effect waves-light btn">Register</a>
 </body>
+
 </html>

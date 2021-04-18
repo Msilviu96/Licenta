@@ -1,50 +1,177 @@
-
-
 {% load static %}
-<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<link rel="stylesheet" type="text/css" href="{% static 'authentification/login.css' %}">
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<link rel="stylesheet" href="{% static 'css/form.css' %}" />
-<!------ Include the above in your HEAD tag ---------->
+<link rel="stylesheet" href="{% static 'css/child.css' %}"/>
 
 
+{% include "authentication/base.html" %}
 
-<div class="container">
-    <div class="row vertical-offset-100">
-    	<div class="col-md-4 col-md-offset-4">
-    		<div class="panel panel-default">
-			  	<div class="panel-heading">
-			    	<h3 class="panel-title">Please type the information needed</h3>
-			 	</div>
-			  	<div class="panel-body">
-			    	<form accept-charset="UTF-8" role="form">
-                    <fieldset>
-						{% csrf_token %}
-                        <div class="form-group">
-			    		    <input class="form-control" placeholder="First name" name="fname" type="text">
-			    		</div>
-                        <div class="form-group">
-			    		    <input class="form-control" placeholder="Last name" name="lname" type="text">
-			    		</div>
-						<div class form-group>
-							<input id="form-control" type="date" value="2016-04-18" name="bday">
-						</div>
-						<div class="form-group">
-			    		    <input class="form-control" placeholder="Gender" name="gender" type="text">
-			    		</div>
-			    		<input class="btn btn-lg btn-success btn-block" type="submit" value="Signup" formmethod="post">
-			    	</fieldset>
-			      	</form>
-			    </div>
-			</div>
-		</div>
-	</div>
+<script>
+    $(document).ready(function() {
+
+        $('select').material_select();
+        $('ul.tabs').tabs();
+
+        $('.datepicker').pickadate({
+            format: "dd-mm-yyyy",
+            selectMonths: true,
+            selectYears: 15,
+        });
+
+        $('.datepicker').on('mousedown',function(event){
+            event.preventDefault();
+        })
+
+        function checkElement(firstName, lastName, bday, gender){
+            if(firstName && lastName && bday && gender){
+                return true;
+            }
+            return false;
+        }
+
+         function checkTokenActivation(token) {
+            $.ajax({
+                url: '/child/checkToken/',
+                data: {'token': token },
+                dataType: 'json',
+                success: function (response) {
+                    if (response) {
+                        if(response['activated']){
+                            $(".progress").remove();
+                            $("#message").text('Activated!')
+                            setTimeout(function(){ window.location = '/'; }, 2000);
+                        }
+
+                        setTimeout(checkTokenActivation, 1000, token);
+                    }
+                }
+            });
+        }
+
+        $("#submit-child-form").on("click", function(){
+                    console.log("aici");
+            var firstName = $("#fname").val();
+            var lastName = $("#lname").val();
+            var bday = $("#bday").val();
+            var gender = $('input[name=gender]:checked').attr('id');
+
+            if(!checkElement(firstName, lastName, bday, gender)){
+                return;
+            }
+
+            if(gender == "male"){
+                gender = "M";
+            }else{
+                gender = "F";
+            }
+
+            $.ajax({
+                type: "POST",
+                url: '/child/',
+                data: {
+                    'fname': firstName,
+                    'lname': lastName,
+                    'bday': bday,
+                    'gender': gender
+                },
+                dataType: 'json',
+                success: function(response){
+
+                    var token = response['token'];
+                    $("#token").text(token);
+                    $("#tab-reg").removeClass("disabled");
+                    $('ul.tabs').tabs('select_tab', 'registration');
+                    $("#tab-inf").addClass("disabled");
+
+                    checkTokenActivation(token);
+                },
+                error: function(response){
+                    console.log(response);
+                    Materialize.toast("Internal error, please try again later!", 5000)
+                }
+            });
+
+            event.preventDefault();
+
+        });
+    });
+</script>
+
+{% block childForm %}
+<div id="form-page" class="row">
+    <div class="col s12 z-depth-10 card-panel hoverable">
+
+        <div class="input-field col s12 center">
+            <img class="logo" src="https://i.ibb.co/WKSyBP8/logo-orange.jpg" class="center">
+        </div>
+        <ul class="tabs">
+            <li class="tab col s6" id="tab-inf"><a href="#information">Information</a></li>
+            <li class="tab col s6 disabled" id="tab-reg"><a href="#registration">Registration</a></li>
+        </ul>
+        <div id="information">
+            <form class="register-form">
+                {% csrf_token %}
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">filter_1</i>
+                    <input name="fname" type="text" id="fname" class="validate" required="" aria-required="true">
+                    <label class="active" for="fname">First name</label>
+                </div>
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">filter_2</i>
+                    <input name="lname" type="text" id="lname" class="validate" required="" aria-required="true">
+                    <label class="active" for="lname">Last name</label>
+                </div>
+
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">today</i>
+                    <input name="bday" type="text" id="bday" class="datepicker" required="" aria-required="true">
+                    <label class="active" for="bday">Birthday</label>
+                </div>
+                <div class="input-field col s6">
+                    <div class="gender-male">
+                        <input name="gender" type="radio" id="male" required/>
+                        <label for="male">Male</label>
+                    </div>
+                </div>
+                <div class="input-field col s6">
+                    <div class="gender-female">
+                        <input name="gender" type="radio" id="female" required/>
+                        <label for="female">Female</label>
+                    </div>
+                </div>
+                <div class="input-field col s6"></div>
+
+
+                <div class="input-field col s12 m12">
+                    <button class="btn col s12 deep-orange" id="submit-child-form" type="submit">Next</button>
+                </div>
+            </form>
+
+            <div class="input-field col s6"></div>
+
+        </div>
+        <div id="registration">
+            <div class="row">
+                <div class="col s6 m12">
+                    <div class="card-panel deep-orange">
+                        <h3 id="token" class="white-text center"></h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col s12 m12">
+                    <h2 id="message" class="flow-text center">Register this token in the mobile application!</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="progress">
+                    <div class="indeterminate deep-orange"></div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
 </div>
 
 
-{% if error %}
-	<div class="container">
-		<h1> Aici este  eroarea: {{ error }} </h1>
-	</div>
-{% endif %}
+{% endblock %}

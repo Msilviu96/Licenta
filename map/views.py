@@ -14,7 +14,6 @@ from MONAPP.pusher import Pusher
 class Map(View):
     html = 'map/map.html'
 
-    @logged_in_only
     def get(self, request):
         token = request.GET.get('token')
         if token:
@@ -61,12 +60,13 @@ class DangerZone(View):
     @logged_in_only
     def post(self, request):
         coordinates = str(json.loads(request.POST.get('data'))['geometry']['coordinates'][0])
+        title = request.POST.get('title')
         parent = models.Parent.objects.filter(pk=request.session.get(SESSION_USER_ID_FIELD_NAME)).first()
 
         try:
             models.Danger_zone.objects.create(
                 parent=parent,
-                title='',
+                title=title,
                 description='',
                 coordinates=coordinates
             )
@@ -81,8 +81,7 @@ class DangerZone(View):
         danger_zones_coordinates = list()
 
         for danger_zone in danger_zones:
-            danger_zones_coordinates.append(eval(danger_zone.coordinates))
-            print(danger_zone.coordinates)
+            danger_zones_coordinates.append([eval(danger_zone.coordinates), danger_zone.title])
 
         return JsonResponse({
             'data': danger_zones_coordinates
@@ -93,7 +92,7 @@ class DangerZone(View):
         delete = QueryDict(request.body)
         coordinates = str(json.loads(delete.get('data'))['geometry']['coordinates'][0])
 
-        danger_zone = models.Danger_zone.objects.get(coordinates=coordinates)
+        danger_zone = models.Danger_zone.objects.filter(coordinates=coordinates).first()
         danger_zone.delete()
 
         return JsonResponse({

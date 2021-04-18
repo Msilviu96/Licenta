@@ -1,5 +1,7 @@
+import datetime
+
 from django.db import models
-from django.core import serializers
+
 from MONAPP.settings import SESSION_USER_ID_FIELD_NAME
 
 
@@ -16,6 +18,7 @@ class Parent(models.Model):
     gender = models.CharField(max_length=1)
     username = models.CharField(max_length=26, unique=True)
     password = models.CharField(max_length=30)
+    image = models.ImageField(upload_to='profile_image', blank=True)
 
     @classmethod
     def authenticate(cls, username, password):
@@ -32,13 +35,20 @@ class Parent(models.Model):
             del request.session
 
 
+class Danger_zone(models.Model):
+    parent = models.ForeignKey(Parent, on_delete=models.CASCADE, null=True)
+    title = models.CharField(max_length=30)
+    description = models.CharField(max_length=300)
+    coordinates = models.CharField(max_length=4096)
+
+
 class Child(models.Model):
     parent = models.ForeignKey(Parent, on_delete=models.CASCADE, null=True)
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
     birth_day = models.DateField(null=True)
     gender = models.CharField(max_length=1)
-
+    image = models.ImageField(upload_to='profile_image', blank=True)
 
 
 class Device(models.Model):
@@ -47,13 +57,8 @@ class Device(models.Model):
     latitude = models.FloatField(null=True)
     longitude = models.FloatField(null=True)
     activated = models.BooleanField()
-
-
-class Danger_zone(models.Model):
-    parent = models.ForeignKey(Parent, on_delete=models.CASCADE, null=True)
-    title = models.CharField(max_length=30)
-    description = models.CharField(max_length=300)
-    coordinates = models.CharField(max_length=4096)
+    current_zone = models.ForeignKey(Danger_zone, on_delete=models.SET_DEFAULT, null=True, default=None)
+    mockedLocation = models.BooleanField(default=False)
 
 
 class Approved_zone(models.Model):
@@ -65,5 +70,19 @@ class Approved_zone(models.Model):
 
 class Notification(models.Model):
     parent = models.ForeignKey(Parent, on_delete=models.CASCADE, null=True)
-    title = models.CharField(max_length=30)
+    device = models.ForeignKey(Device, on_delete=models.CASCADE, null=True)
     description = models.CharField(max_length=300)
+    read = models.BooleanField(default=False)
+
+
+class Message(models.Model):
+    device = models.ForeignKey(Device, on_delete=models.CASCADE, null=True)
+    message = models.CharField(max_length=300)
+    creation_time = models.DateTimeField(default=datetime.datetime.now())
+    sent = models.BooleanField(default=False)
+    read = models.BooleanField(default=False)
+
+
+class Applications(models.Model):
+    device = models.ForeignKey(Device, on_delete=models.CASCADE, null=True)
+    app_list = models.CharField(max_length=10000, null=True)

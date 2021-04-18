@@ -2,3 +2,33 @@
         width:  100%;
         height: 100%;
 }
+.mapbox {
+    position: relative;
+}
+
+.mapbox .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 314159;
+    pointer-events: none;
+}
+
+.mapbox .overlay .btn {
+    pointer-events: initial;
+}
+
+.text-edit{
+    width:350px;
+    height:250px;
+}
+
+
+#childPickModal #modal-content .collection .collection-item&.avatar {
+    height: 64px;
+}
+
+.circle{
+   top: 25%;
+}
+

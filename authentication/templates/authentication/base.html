@@ -1,29 +1,283 @@
 {% load staticfiles %}
-<link rel="stylesheet" href="{% static 'css/base.css' %}"/>
-<link rel="stylesheet" href="{% static 'css/navbar.css' %}"/>
+<head>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}"/>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
 
-<div class="navigation_bar">
-    {% block navbar %}
-    <div class="navbar">
-        <a href="#home">Home</a>
-        <a href="map">Map</a>
-        <a href="child">Add child</a>
-        <div class="dropdown">
-            <button class="dropbtn">Dropdown
-                <i class="fa fa-caret-down"></i>
-            </button>
-            <div class="dropdown-content">
-                <a href="#">Link 1</a>
-                <a href="#">Link 2</a>
-                <a href="#">Link 3</a>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <script>
+	    $(document).ready(function() {
+	        var csrftoken = Cookies.get('csrftoken');
+	        function csrfSafeMethod(method) {
+                // these HTTP methods do not require CSRF protection
+                return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+            }
+            $.ajaxSetup({
+                beforeSend: function(xhr, settings) {
+                    if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                        xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                    }
+                }
+            });
+
+			$('.dropdown-button').dropdown({
+				  inDuration: 300,
+				  outDuration: 225,
+				  belowOrigin: true, // Displays dropdown below the button
+				  constrainWidth:false,
+				}
+			);
+            $('select').material_select();
+            $(".button-collapse").sideNav();
+
+            $('#childSettings').tabs();
+
+            $('.info').click(function(e){
+                var firstName = e.currentTarget.parentElement.parentElement.children[0].children[0].children[0].children[1].children[0].children[0].value;
+                var lastName = e.currentTarget.parentElement.parentElement.children[0].children[0].children[1].children[1].children[0].children[0].value;
+                var token = e.currentTarget.parentElement.parentElement.children[0].children[0].children[3].children[1].textContent;
+
+                console.log(first_name + " " + last_name)
+                if (!firstName && !lastName){
+                    Materialize.toast("Please complete at least one field!", 5000)
+                }
+                else{
+                    $.ajax({
+                        type: "PUT",
+                        url: '/child/',
+                        data: {
+                            'fname': firstName,
+                            'lname': lastName,
+                            'token': token,
+                        },
+                        dataType: 'json',
+                        success: function(response){
+                             location.reload();
+                        },
+                        error: function(response){
+                            console.log(response);
+                            Materialize.toast("Internal error, please try again later!", 5000)
+                        }
+                    });
+                }
+                event.preventDefault();
+            });
+
+             $(".picture").click(function(){
+                e.preventDefault();
+                var formData = new FormData($('#uploadImg')[0]);
+            });
+
+            $('.message').click(function(e){
+                var token = $(this).attr('token');
+                var message = e.currentTarget.parentElement.parentElement.children[2].children[0].value
+
+                if(message == ''){
+                    Materialize.toast("Please type a message first!", 5000)
+                }else{
+                    $.ajax({
+                        type: "POST",
+                        url: '/rest/message/',
+                        data: {
+                            csrfmiddlewaretoken: window.CSRF_TOKEN,
+                            'token': token,
+                            'message': message,
+                        },
+                        dataType: 'json',
+                            success: function(response){
+                                 Materialize.toast("Message sent!", 5000)
+                            },
+                            error: function(response){
+                                console.log(response);
+                                Materialize.toast("Internal error, please try again later!", 5000)
+                            }
+                    });
+                }
+            });
+
+            $('.apps').click(function(e){
+                var token = $(this).attr('token');
+                var children = e.currentTarget.parentElement.parentElement.children[1].children[1].children;
+
+                var apps = [];
+
+                for (var i = 0; i < children.length; i++) {
+                    var tableChild = children[i];
+                    var app_name = tableChild.children[0].innerHTML;
+                    var status = tableChild.children[1].children[0].children[0].children[0].checked
+
+                    var dict = {};
+                    dict["name"] = app_name;
+
+                    if(status){
+                        dict["blocked"] = "Y";
+                    }else{
+                        dict["blocked"] = "N";
+                    }
+                    apps.push(dict);
+                }
+
+                apps = JSON.stringify(apps);
+
+                $.ajax({
+                        type: "POST",
+                        url: '/rest/apps/',
+                        data: {
+                            csrfmiddlewaretoken: window.CSRF_TOKEN,
+                            'token': token,
+                            'apps': apps,
+                        },
+                        dataType: 'json',
+                            success: function(response){
+                                 Materialize.toast("Saved!", 3000)
+                            },
+                            error: function(response){
+                                console.log(response);
+                                Materialize.toast("Internal error, please try again later!", 5000)
+                            }
+                    });
+            });
+		});
+
+    </script>
+</head>
+
+<body id="base">
+<main>
+    <div class="navbar-fixed">
+        <nav class="navbar-fixed blue darken-4 main-navigation" role="navigation">
+            <div class="nav-wrapper deep-orange">
+                <a href="/" class="navbar-brand"><img
+                        src="https://i.ibb.co/Jx4V6wJ/1920676965-46d3a9a8-9c60-41e8-bd89-1b0a4ec76940.png"
+                        alt="1920676965-46d3a9a8-9c60-41e8-bd89-1b0a4ec76940" border="0" height="95%"></a>
+                <ul class="right hide-on-med-and-down">
+                    <li><a id="collapse-button">Profile</a></li>
+                    <li><a href="/map">Map</a></li>
+                    <li><a href="/child">Add child</a></li>
+                    <!-- Dropdown Trigger -->
+                    <li>
+                        <a class="dropdown-button" data-activates="dropdown" data-beloworigin="true">Notifications
+                            <i class="material-icons right">arrow_drop_down</i>
+                            {% if notifications|length > 0 %}
+                            <span class="new badge">{{ notifications|length }}</span>
+                            {% endif %}
+                        </a>
+
+                    </li>
+                    <li><a href="/login">Logout</a></li>
+                </ul>
             </div>
-        </div>
+        </nav>
     </div>
+    <!-- Dropdown Structure -->
+    <ul id="dropdown" class="dropdown-content collection">
+        {% for notification in notifications %}
+        <li class="collection-item avatar">
+            <img src="{{ notification.device.child.image.url }}" alt="" class="circle">
+            <span id="{{ notification.pk }}" class="title">{{ notification.device.child.first_name }}</span>
+            <p id="notification-content" class="{{ notification.pk }}"> {{ notification.description }} </p>
+        </li>
+        {% endfor %}
+        {% if notifications|length == 0 %}
+        <li class="collection-item">
+            <span class="title">No notifications!</span>
+        </li>
+        {% endif %}
+    </ul>
+
+    <ul id="slide-out" class="side-nav">
+        <li>
+            <div class="user-view">
+                <div class="background">
+                    <img src="https://ak2.picdn.net/shutterstock/videos/15526552/thumb/6.jpg">
+                </div>
+                <a><img class="circle" src="{{ user.image.url }}"></a>
+                <a><span class="white-text name">{{ user.first_name }} {{ user.last_name }}</span></a>
+                <a><span class="white-text email">{{ user.email }}</span></a>
+            </div>
+        </li>
+        <li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>
+        <li><a href="#!">Second Link</a></li>
+        <li>
+            <div class="divider"></div>
+        </li>
+        <li><a class="subheader">Subheader</a></li>
+        <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+    </ul>
+    <a href="#" data-activates="slide-out" class="button-collapse"></a>
+
+    {% block kids %}
     {% endblock %}
-</div>
+
+    {% block childForm %}
+    {% endblock %}
+</main>
+
+
+<script>
+		function readNotification(pk){
+			$.ajax({
+				type: 'PUT',
+				url: '/',
+				data: {
+					'pk': pk
+				}
+			});
+		}
+
+		function createElement(d,c,t){
+            var e = document.createElement(d);
+            e.className = c;
+            if(t){
+            	e.textContent = t;
+            }
+            return e;
+        }
+
+		function checkNotificationNumber(){
+			var nextNotification = $(".dropdown-content")[0].firstChild.nextElementSibling;
+			if(!nextNotification){
+				var notification = createElement("li", "collection-item", null);
+				notification.append(createElement("span", "title", "No notifications"));
+				$(".dropdown-content").append(notification);
+			}
+		}
+
+		$("#notification-content").on("click", function(e){
+			var pk = $(e.target)[0].className;
+			if(pk){
+				readNotification(pk);
+			}
+			$(e.target).parent().remove();
+			checkNotificationNumber();
+		});
+
+		$(".title").on("click", function(e){
+			var pk = $(e.target)[0].id;
+			if(pk){
+				readNotification(pk);
+			}
+			$(e.target).parent().remove();
+			checkNotificationNumber();
+		});
+
+         $('.dropdown-button').on("click", function(){
+            $(".new").remove();
+        });
+
+        $('#collapse-button').on('click', function(){
+            $(".button-collapse").sideNav('show');
+        });
+</script>
+
 
 <div class="content">
     {% block content %}
     {% endblock %}
 </div>
+</body>

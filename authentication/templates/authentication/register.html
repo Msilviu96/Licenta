@@ -1,70 +1,85 @@
 {% load static %}
-<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<link rel="stylesheet" type="text/css" href="{% static 'authentification/login.css' %}">
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<link rel="stylesheet" href="{% static 'css/form.css' %}" />
-<!------ Include the above in your HEAD tag ---------->
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="{% static 'css/login.css' %}"/>
+</head>
 
+<body>
+<div id="form-page" class="row">
+    <div class="col s12 z-depth-10 card-panel hoverable">
+        <form class="register-form">
+            <div class="input-field col s12 center">
+                <img class="logo" src="https://i.ibb.co/WKSyBP8/logo-orange.jpg" class="center">
+            </div>
 
+            <div class="input-field col s6">
+                <input name="fname" type="text" id="fname" class="validate" required="" aria-required="true">
+                <label class="active" for="fname">First name</label>
+            </div>
+            <div class="input-field col s6 m6">
+                <input name="lname" type="text" id="lname" class="validate" required="" aria-required="true">
+                <label class="active" for="lname">Last name</label>
+            </div>
 
-<div class="container">
-    <div class="row vertical-offset-100">
-    	<div class="col-md-4 col-md-offset-4">
-    		<div class="panel panel-default">
-			  	<div class="panel-heading">
-			    	<h3 class="panel-title">Please type the information needed</h3>
-			 	</div>
-			  	<div class="panel-body">
-			    	<form accept-charset="UTF-8" role="form">
-                    <fieldset>
-						{% csrf_token %}
-                        <div class="form-group">
-			    		    <input class="form-control" placeholder="First name" name="fname" type="text">
-			    		</div>
-                        <div class="form-group">
-			    		    <input class="form-control" placeholder="Last name" name="lname" type="text">
-			    		</div>
-                        <div class="form-group">
-			    		    <input class="form-control" placeholder="Email" name="email" type="text">
-			    		</div>
-                        <div class="form-group">
-			    		    <input class="form-control" placeholder="Phone number" name="phone" type="text">
-			    		</div>
-                        <div class="form-group">
-			    		    <input class="form-control" placeholder="Locality" name="locality" type="text">
-			    		</div>
-                        <div class="form-group">
-			    		    <input class="form-control" placeholder="County" name="county" type="text">
-			    		</div>
-						<div class form-group>
-							<input id="form-control" type="date" value="1996-04-18" name="bday">
-						</div>
-						<div class="form-group">
-			    		    <input class="form-control" placeholder="Gender" name="gender" type="text">
-			    		</div>
-			    	  	<div class="form-group">
-			    		    <input class="form-control" placeholder="Username" name="username" type="text">
-			    		</div>
-			    		<div class="form-group">
-			    			<input class="form-control" placeholder="Password" name="password" type="password" value="">
-			    		</div>
-                        <div class="form-group">
-			    			<input class="form-control" placeholder="Confirm password" name="confirmation" type="password" value="">
-			    		</div>
+            <div class="input-field col s6">
+                <input name="bday" type="text" id="bday" class="datepicker" required="" aria-required="true">
+                <label class="active" for="bday">Birthday</label>
+            </div>
+            <div class="input-field col s6 m6">
+                <input name="phone" type="text" id="phone" class="validate" required="" aria-required="true">
+                <label class="phone" for="phone">Phone number</label>
+            </div>
 
-			    		<input class="btn btn-lg btn-success btn-block" type="submit" value="Signup" formmethod="post">
-			    	</fieldset>
-			      	</form>
-			    </div>
-			</div>
-		</div>
-	</div>
+            <div class="input-field col s6">
+                <input name="username" type="text" id="username" class="validate" required="" aria-required="true">
+                <label class="active" for="username">Username</label>
+            </div>
+            <div class="input-field col s6">
+                <input name="email" type="text" id="email" class="validate" required="" aria-required="true">
+                <label class="active" for="email">Email</label>
+            </div>
+
+            <div class="input-field col s6">
+                <input name="password" id="password" type="password" class="validate" required="" aria-required="true">
+                <label class="active" for="password">Password</label>
+            </div>
+            <div class="input-field col s6">
+                <input name="confirmation" id="confirmation" type="password" class="validate" required=""
+                       aria-required="true">
+                <label class="active" for="confirmation">Confirm password</label>
+            </div>
+
+            <form class="input-field col s12 m12" id="formm" method="post">
+                {% csrf_token %}
+                <input type="submit" value="Register" class="btn col s12 deep-orange" formmethod="post">
+            </form>
+
+            <div class="input-field col s6"></div>
+            <div class="input-field col s6">
+                <p class="margin medium-small"><a href="/login/">Already have an account? Sign in</a></p>
+            </div>
+        </form>
+    </div>
 </div>
 
+<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var elems = document.querySelectorAll('.datepicker');
+            var options = {
+                format: "dd-mm-yyyy",
+                selectMonths: true,
+                yearRange: [1950, 2019],
+                maxDate: new Date()
+            };
+            var instances = M.Datepicker.init(elems, options);
+        });
 
+</script>
+</body>
 {% if error %}
-	<div class="container">
-		<h1> Aici este  eroarea: {{ error }} </h1>
-	</div>
+<div class="container">
+    <h1> Aici este eroarea: {{ error }} </h1>
+</div>
 {% endif %}
